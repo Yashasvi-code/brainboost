@@ -16,7 +16,7 @@ Full-stack e-learning platform with personalized recommendations.
 ## Setup
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/brainboost.git
+git clone https://github.com/Yashasvi-code/brainboost.git
 
 # Frontend
 cd client
