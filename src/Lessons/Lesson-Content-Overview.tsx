@@ -1,9 +1,12 @@
 // The exported code uses Tailwind CSS. Install Tailwind CSS in your dev environment to ensure all styles work.
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 // import * as echarts from 'echarts';
 
 const App: React.FC = () => {
+  const navigate = useNavigate();
   const [currentSection, setCurrentSection] = useState(1);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -45,120 +48,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {/* Mobile Navigation */}
-      {/* <div className="lg:hidden">
-        <div className="bg-gray-800 px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center">
-           
-            <h1 className="ml-2 text-xl font-bold text-indigo-400">BrainBoost</h1>
-          </div>
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-gray-300 hover:text-white cursor-pointer !rounded-button whitespace-nowrap"
-          >
-            <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
-          </button>
-        </div>
-        {isMobileMenuOpen && (
-          <div className="bg-gray-800 shadow-lg">
-            <nav className="px-4 py-3">
-              <ul className="space-y-2">
-                <li>
-                  <a href="https://readdy.ai/home/93431ca8-7bfe-40a5-a2ff-332620bfb63e/a1160d7d-b821-4c64-8105-be967a8aeb9a" data-readdy="true" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-                    <i className="fas fa-home w-6"></i>
-                    <span>Home</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://readdy.ai/home/93431ca8-7bfe-40a5-a2ff-332620bfb63e/a1160d7d-b821-4c64-8105-be967a8aeb9a" data-readdy="true" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-                    <i className="fas fa-chart-line w-6"></i>
-                    <span>Dashboard</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md cursor-pointer">
-                    <i className="fas fa-book w-6"></i>
-                    <span>Lessons</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-                    <i className="fas fa-question-circle w-6"></i>
-                    <span>Quizzes</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-                    <i className="fas fa-medal w-6"></i>
-                    <span>Achievements</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-                    <i className="fas fa-cog w-6"></i>
-                    <span>Settings</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        )}
-      </div> */}
-
       <div className="flex">
-        {/* Desktop Sidebar */}
-        <aside className="hidden lg:flex flex-col w-64 bg-gray-800 h-screen sticky top-0">
-          <div className="p-4 flex items-center">
-            <h1 className="ml-2 text-xl font-bold text-indigo-400">BrainBoost</h1>
-          </div>
-          <div className="p-4 border-b border-gray-700">
-            <div className="flex items-center">
-              
-              <div className="ml-3">
-                <p className="text-xl font-medium">Yashasvi Tiwari</p>
-                <p className="text-sm text-gray-400">Level 7 Learner</p>
-              </div>
-            </div>
-          </div>
-          {/* <nav className="flex-1 px-2 py-4 space-y-1">
-            <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-              <i className="fas fa-home w-6"></i>
-              <span>Home</span>
-            </a>
-            <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-              <i className="fas fa-chart-line w-6"></i>
-              <span>Dashboard</span>
-            </a>
-            <a href="#" className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md cursor-pointer">
-              <i className="fas fa-book w-6"></i>
-              <span>Lessons</span>
-            </a>
-            <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-              <i className="fas fa-question-circle w-6"></i>
-              <span>Quizzes</span>
-            </a>
-            <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-              <i className="fas fa-medal w-6"></i>
-              <span>Achievements</span>
-            </a>
-            <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-              <i className="fas fa-cog w-6"></i>
-              <span>Settings</span>
-            </a>
-          </nav> */}
-          <div className="p-4 border-t border-gray-700">
-            <div className="bg-gray-700 rounded-lg p-3">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium">Lesson Progress</span>
-                <span className="text-sm font-bold text-indigo-400">{progress}%</span>
-              </div>
-              <div className="w-full bg-gray-600 rounded-full h-2.5">
-                <div className="bg-indigo-500 h-2.5 rounded-full" style={{ width: `${progress}%` }}></div>
-              </div>
-            </div>
-          </div>
-        </aside>
-
         {/* Main Content */}
         <main className="flex-1 min-h-screen">
           {/* Header with Progress */}
@@ -166,13 +56,13 @@ const App: React.FC = () => {
             <div className="container mx-auto px-6 py-4">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center mb-4 md:mb-0">
-                  <a 
-                    href="https://readdy.ai/home/93431ca8-7bfe-40a5-a2ff-332620bfb63e/a1160d7d-b821-4c64-8105-be967a8aeb9a" 
-                    data-readdy="true" 
-                    className="mr-4 text-gray-300 hover:text-white cursor-pointer"
-                  >
-                    <i className="fas fa-arrow-left"></i>
-                  </a>
+                  <button 
+          onClick={() => navigate(-1)} // Goes back in history
+          className="flex items-center text-indigo-400 hover:text-indigo-300 mr-4"
+        >
+          <i className="fas fa-arrow-left mr-2"></i>
+          Back
+        </button>
                   <h1 className="text-xl font-bold">Machine Learning Fundamentals</h1>
                 </div>
                 <div className="flex items-center space-x-4">

@@ -1,12 +1,27 @@
-// The exported code uses Tailwind CSS. Install Tailwind CSS in your dev environment to ensure all styles work.
+// DASHBOARD PAGE
 import React, { useState } from "react";
 import * as echarts from "echarts";
+import { useNavigate } from "react-router-dom";
+
 const App: React.FC = () => {
+  const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showSignOutModal, setShowSignOutModal] = useState(false);
   // Initialize charts after component mounts
   React.useEffect(() => {
+    // const handleNavigateToMCF = () => {
+    //   navigate("/lesson");
+    // };
+
+    const handleNavigateToDV = () => {
+      navigate("/machine-learning-engineer");
+    };
+
+    const handleNavigateToCF = () => {
+      navigate("/machine-learning-engineer");
+    };
+
     const progressChart = echarts.init(
       document.getElementById("progress-chart")
     );
@@ -126,6 +141,11 @@ const App: React.FC = () => {
       quizScoreChart.dispose();
     };
   }, []);
+  function handleNavigateToMCF(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    event.preventDefault();
+    navigate("/Lesson");
+  }
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Mobile Navigation */}
@@ -211,90 +231,21 @@ const App: React.FC = () => {
         )}
       </div>
       <div className="flex">
-        {/* Desktop Sidebar */}
-        {/* <aside className="hidden lg:flex flex-col w-64 bg-gray-800 h-screen sticky top-0">
-          <div className="p-4 flex items-center">
-            
-            <h1 className="ml-2 text-xl font-bold text-indigo-400">
-              BrainBoost
-            </h1>
-          </div>
-          <div className="p-4 border-b border-gray-700">
-            <div className="flex items-center">
-              
-              <div className="ml-3">
-                <p className="text-sm font-medium">Yashasvi Tiwari</p>
-                <p className="text-xs text-gray-400">Level 7 Learner</p>
-              </div>
-            </div>
-          </div>
-          <nav className="flex-1 px-2 py-4 space-y-1">
-            <a
-              href=""
-              className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer"
-            >
-              <i className="fas fa-home w-6"></i>
-              <span>Home</span>
-            </a>
-            <a
-              href="#"
-              className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md cursor-pointer"
-            >
-              <i className="fas fa-chart-line w-6"></i>
-              <span>Dashboard</span>
-            </a>
-            <a
-              href="#"
-              className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer"
-            >
-              <i className="fas fa-book w-6"></i>
-              <span>Lessons</span>
-            </a>
-            <a
-              href="#"
-              className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer"
-            >
-              <i className="fas fa-question-circle w-6"></i>
-              <span>Quizzes</span>
-            </a>
-            <a
-              href="#"
-              className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer"
-            >
-              <i className="fas fa-medal w-6"></i>
-              <span>Achievements</span>
-            </a>
-            <a
-              href="#"
-              className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer"
-            >
-              <i className="fas fa-cog w-6"></i>
-              <span>Settings</span>
-            </a>
-          </nav>
-          <div className="p-4 border-t border-gray-700">
-            <div className="bg-gray-700 rounded-lg p-3">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium">Overall Progress</span>
-                <span className="text-sm font-bold text-indigo-400">65%</span>
-              </div>
-              <div className="w-full bg-gray-600 rounded-full h-2.5">
-                <div
-                  className="bg-indigo-500 h-2.5 rounded-full"
-                  style={{ width: "65%" }}
-                ></div>
-              </div>
-            </div>
-          </div>
-        </aside> */}
         {/* Main Content */}
         <main className="flex-1 p-6 lg:p-8">
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
             <div>
+              <button
+                onClick={() => navigate(-1)} // Goes back in history
+                className="flex items-center text-indigo-400 hover:text-indigo-300 mr-4"
+              >
+                <i className="fas fa-arrow-left mr-2"></i>
+                Back
+              </button>
               <h1 className="text-2xl lg:text-3xl font-bold">Dashboard</h1>
               <p className="text-gray-400 mt-1">
-                Welcome back, Yashasvi! Continue your learning journey.
+                Welcome back, Buddy! Continue your learning journey.
               </p>
             </div>
             <div className="relative">
@@ -302,8 +253,7 @@ const App: React.FC = () => {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg cursor-pointer !rounded-button whitespace-nowrap"
               >
-               
-                <span className="hidden md:inline">Yashasvi Tiwari</span>
+                <span className="hidden md:inline">Captain-cool</span>
                 <i className="fas fa-chevron-down text-xs"></i>
               </button>
               {isDropdownOpen && (
@@ -732,76 +682,9 @@ Start Lesson
                       </div>
                       <span className="text-xs text-gray-400 ml-1">4.2</span>
                     </div>
-                    <button
-                      onClick={() => {
-                        const modal = document.createElement("div");
-                        modal.className =
-                          "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50";
-                        modal.innerHTML = `
-<div class="bg-gray-800 rounded-xl p-6 max-w-3xl w-full mx-4 shadow-2xl">
-<div class="flex justify-between items-center mb-4">
-<h3 class="text-xl font-bold">Machine Learning Fundamentals</h3>
-<button class="text-gray-400 hover:text-white">
-<i class="fas fa-times"></i>
-</button>
-</div>
-<div class="mb-4">
-<span class="text-xs font-medium bg-blue-900/30 text-blue-400 px-2 py-1 rounded-full mr-2">Advanced</span>
-<span class="text-xs text-gray-400"><i class="far fa-clock mr-1"></i> 45 min</span>
-</div>
-<p class="text-gray-300 mb-4">Learn the core concepts of machine learning algorithms and their applications. This comprehensive lesson covers supervised and unsupervised learning, neural networks, and practical implementation examples.</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-<div class="bg-gray-700/50 p-3 rounded-lg">
-<p class="text-sm text-gray-400">Topics Covered</p>
-<ul class="text-sm mt-2 space-y-1">
-<li><i class="fas fa-check text-green-400 mr-2"></i>Supervised Learning</li>
-<li><i class="fas fa-check text-green-400 mr-2"></i>Neural Networks</li>
-<li><i class="fas fa-check text-green-400 mr-2"></i>Decision Trees</li>
-<li><i class="fas fa-check text-green-400 mr-2"></i>Practical Applications</li>
-</ul>
-</div>
-<div class="bg-gray-700/50 p-3 rounded-lg">
-<p class="text-sm text-gray-400">Prerequisites</p>
-<ul class="text-sm mt-2 space-y-1">
-<li><i class="fas fa-circle text-xs text-indigo-400 mr-2"></i>Basic Python Knowledge</li>
-<li><i class="fas fa-circle text-xs text-indigo-400 mr-2"></i>Statistics Fundamentals</li>
-<li><i class="fas fa-circle text-xs text-indigo-400 mr-2"></i>Data Structures</li>
-</ul>
-</div>
-</div>
-<div class="flex justify-end space-x-4">
-<button class="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg !rounded-button whitespace-nowrap">
-Save for Later
-</button>
-<a href="/" ">
-<a href="/" ">
-<a href="/" ">
-<button class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg !rounded-button whitespace-nowrap">
-Begin Lesson
-</button>
-</a>
-</a>
-</a>
-</div>
-</div>
-`;
-                        document.body.appendChild(modal);
-                        // Add event listeners to close the modal
-                        const closeBtn = modal.querySelector("button");
-                        closeBtn.addEventListener("click", () => {
-                          document.body.removeChild(modal);
-                        });
-                        // Close on click outside
-                        modal.addEventListener("click", (e) => {
-                          if (e.target === modal) {
-                            document.body.removeChild(modal);
-                          }
-                        });
-                      }}
-                      className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-3 py-1 rounded-lg cursor-pointer !rounded-button whitespace-nowrap"
-                    >
-                      Start Lesson
-                    </button>
+                    <button onClick={handleNavigateToMCF} className="p-6 max-w-3xl w-full mx-9 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg cursor-pointer !rounded-button whitespace-nowrap">
+    Start Lesson
+  </button>
                   </div>
                 </div>
               </div>

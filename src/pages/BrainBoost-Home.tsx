@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import * as echarts from "echarts";
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -221,6 +223,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 //   );
 // };
 const App: React.FC = () => {
+  const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentTab, setCurrentTab] = useState("recommended");
@@ -254,6 +257,14 @@ const App: React.FC = () => {
   const navigateTo = (section: string) => {
     alert(`Navigating to ${section}`);
     setIsMobileMenuOpen(false);
+  };
+
+  const handleNavigateToMC = () => {
+    navigate('/machine-learning-engineer');
+  };
+
+  const handleNavigateToProgress = () => {
+    navigate('/full-stack-progress');
   };
 
   useEffect(() => {
@@ -331,97 +342,6 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {/* Mobile Navigation */}
-      {/* <div className="lg:hidden">
-        <div className="bg-gray-800 px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center">
-
-            <h1 className="ml-2 text-xl font-bold text-indigo-400">
-              BrainBoost
-            </h1>
-          </div>
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-gray-300 hover:text-white cursor-pointer !rounded-button whitespace-nowrap"
-          >
-            <i
-              className={`fas ${
-                isMobileMenuOpen ? "fa-times" : "fa-bars"
-              } text-xl`}
-            ></i>
-          </button>
-        </div>
-        {isMobileMenuOpen && (
-          <div className="bg-gray-800 shadow-lg">
-            <nav className="px-4 py-3">
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigateTo("home");
-                    }}
-                    className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md cursor-pointer"
-                  >
-                    <i className="fas fa-home w-6"></i>
-                    <span>Home</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigateTo("homeDashboard");
-                    }}
-                    className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md cursor-pointer"
-                  >
-                    <i className="fas fa-chart-line w-6"></i>
-                    <span>Dashboard</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer"
-                  >
-                    <i className="fas fa-book w-6"></i>
-                    <span>Lessons</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer"
-                  >
-                    <i className="fas fa-question-circle w-6"></i>
-                    <span>Quizzes</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer"
-                  >
-                    <i className="fas fa-medal w-6"></i>
-                    <span>Achievements</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer"
-                  >
-                    <i className="fas fa-cog w-6"></i>
-                    <span>Settings</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        )}
-      </div> */}
       <div className="flex">
         {/* Desktop Sidebar */}
         <aside className="hidden lg:flex flex-col w-64 bg-gray-800 h-screen sticky top-0">
@@ -433,37 +353,12 @@ const App: React.FC = () => {
           <div className="p-4 border-b border-gray-700">
             <div className="flex items-center">
               <div className="ml-4">
-                <p className="text-xl font-medium">Yashasvi Tiwari</p>
+                <p className="text-xl font-medium">Captain-Cool</p>
                 <p className="text-sm text-gray-400">Level 7 Learner</p>
               </div>
             </div>
           </div>
-          {/* <nav className="flex-1 px-2 py-4 space-y-1">
-            <a href="#" className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md cursor-pointer">
-              <i className="fas fa-home w-6"></i>
-              <span>Home</span>
-            </a>
-            <a href="./pages/Personalized-Learning-Tutor" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-              <i className="fas fa-chart-line w-6"></i>
-              <span>Dashboard</span>
-            </a>
-            <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-              <i className="fas fa-book w-6"></i>
-              <span>Lessons</span>
-            </a>
-            <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-              <i className="fas fa-question-circle w-6"></i>
-              <span>Quizzes</span>
-            </a>
-            <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-              <i className="fas fa-medal w-6"></i>
-              <span>Achievements</span>
-            </a>
-            <a href="#" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md cursor-pointer">
-              <i className="fas fa-cog w-6"></i>
-              <span>Settings</span>
-            </a>
-          </nav> */}
+          
           <div className="p-4 border-t border-gray-700">
             <div className="bg-gray-700 rounded-lg p-3">
               <div className="flex justify-between items-center mb-2">
@@ -486,7 +381,7 @@ const App: React.FC = () => {
             <div>
               <h1 className="text-2xl lg:text-3xl font-bold">Home</h1>
               <p className="text-gray-400 mt-1">
-                Welcome back, Yashasvi ! Ready to continue your learning
+                Welcome back, Buddy ! Ready to continue your learning
                 journey?
               </p>
             </div>
@@ -496,7 +391,7 @@ const App: React.FC = () => {
                 className="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg cursor-pointer !rounded-button whitespace-nowrap"
               >
                 {/* img */}
-                <span className="hidden md:inline">Yashasvi </span>
+                <span className="hidden md:inline">Captain-Cool </span>
                 <i className="fas fa-chevron-down text-xs"></i>
               </button>
               {isDropdownOpen && (
@@ -544,7 +439,7 @@ const App: React.FC = () => {
             <div className="relative z-10 flex flex-col md:flex-row items-center p-8 md:p-12">
               <div className="w-full md:w-3/5 mb-6 md:mb-0">
                 <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                  Hello, <span className="text-indigo-400">Yashasvi!</span>
+                  Hello, <span className="text-indigo-400">Buddy!</span>
                 </h2>
                 <p className="text-lg text-gray-200 mb-6">
                   You're on a 7-day learning streak. Keep going to reach your
@@ -567,7 +462,7 @@ const App: React.FC = () => {
                   </div>
                 </div>
                 <button
-                  onClick={() => navigateTo("next-lesson")}
+                  onClick={handleNavigateToProgress}
                   className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 cursor-pointer !rounded-button whitespace-nowrap"
                 >
                   Continue Learning
@@ -586,7 +481,7 @@ const App: React.FC = () => {
                 <i className="fas fa-play text-indigo-400 text-xl"></i>
               </div>
               <h3 className="font-medium">Resume Learning</h3>
-              <p className="text-xs text-gray-400 mt-1">Machine Learning</p>
+              <p className="text-xs text-gray-400 mt-1">Full Stack Developemnt</p>
             </div>
             <div className="bg-gray-800 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-gray-700 transition-colors duration-300 cursor-pointer">
               <div className="bg-purple-900/50 p-3 rounded-full mb-3">
@@ -605,13 +500,10 @@ const App: React.FC = () => {
             <div className="bg-gray-800 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-gray-700 transition-colors duration-300 cursor-pointer">
               <div className="bg-green-900/50 p-3 rounded-full mb-3">
                 <i className="fas fa-question-circle text-green-400 text-xl"></i>
-              </div>
-              {/* <h3 className="font-medium">Practice Quiz</h3>
-              <p className="text-xs text-gray-400 mt-1">Test Your Knowledge</p> }
-            </div>
-            {/* <div className="bg-gray-800 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-gray-700 transition-colors duration-300 cursor-pointer">
-    <QuizSection />
-  </div> */}
+                </div>
+                <h3 className="font-medium">Practice Quiz</h3>
+              <p className="text-xs text-gray-400 mt-1">Test Your Knowledge</p>
+            
 </div>
 
           </div>
@@ -809,7 +701,7 @@ const App: React.FC = () => {
                     <i className="far fa-clock mr-1"></i> Est. 4 months
                   </span>
                 </div>
-                <button onClick={() => navigateTo('fullstack-path')} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg cursor-pointer !rounded-button whitespace-nowrap">
+                <button onClick={handleNavigateToProgress} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg cursor-pointer !rounded-button whitespace-nowrap">
     Continue Path
   </button>
               </div>
@@ -847,7 +739,7 @@ const App: React.FC = () => {
                     <i className="far fa-clock mr-1"></i> Est. 6 months
                   </span>
                 </div>
-                <button onClick={() => navigateTo('fullstack-path')} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg cursor-pointer !rounded-button whitespace-nowrap">
+                <button onClick={handleNavigateToMC} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg cursor-pointer !rounded-button whitespace-nowrap">
     Continue Path
   </button>
               </div>
